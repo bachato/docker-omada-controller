@@ -14,6 +14,7 @@ The Helm chart releases do not correspond to the controller version so below is 
 
 | Controller Version | Chart Version | Change Notes |
 | ------------------ | ------------- | :------------ |
+| `6.2.10.17`        | `1.4.0`       | Update to version 6.2.10.17 |
 | `6.2.0.17`         | `1.3.0`       | Add `javaMaxHeapSize` and `javaMinHeapSize` config options |
 | `6.2.0.17`         | `1.2.0`       | Update to version 6.2.0.17 |
 | `6.1.0.19`         | `1.1.6`       | Add `upgradeHttps` port to service if it doesn't equal the `manageHttps` port |
@@ -23,7 +24,7 @@ The Helm chart releases do not correspond to the controller version so below is 
 | `6.1.0.19`         | `1.1.2`       | Fix #721; duplicate port in values.yaml |
 | `6.1.0.19`         | `1.1.1`       | Auto set `MONGO_EXTERNAL=true` when MongoDBUrl is set |
 | `6.1.0.19`         | `1.1.0`       | Updated to version 6.1.0.19 |
-| `6.0.0.25`         | `1.0.2`       | Added env var for UPGRADE_HTTPS_PORT |
+| `6.0.0.25`         | `1.0.2`       | Added env var for `UPGRADE_HTTPS_PORT` |
 | `6.0.0.25`         | `1.0.1`       | Updated to version 6.0.0.25 |
 | `6.0.0.24`         | `1.0.0`       | Initial version |
 

@@ -398,26 +398,6 @@ show_java_version() {
   echo -e "INFO: output of 'java -version':\n$(java -version 2>&1)\n"
 }
 
-handle_java_version() {
-  # get the java version in different formats
-  JAVA_VERSION="$(java -version 2>&1 | head -n 1 | awk -F '"' '{print $2}')"
-  JAVA_VERSION_1="$(echo "${JAVA_VERSION}" | awk -F '.' '{print $1}')"
-  JAVA_VERSION_2="$(echo "${JAVA_VERSION}" | awk -F '.' '{print $2}')"
-
-  # for java 8, remove the opens argument from the CMD
-  case ${JAVA_VERSION_1}.${JAVA_VERSION_2} in
-    1.8)
-      echo "INFO: running Java 8; removing '--add-opens' option(s) from CMD (if present)..."
-      # remove opens option from global EXEC_ARGS array
-      NEW_CMD="${EXEC_ARGS[*]}"
-      NEW_CMD="${NEW_CMD/'--add-opens java.base/sun.security.x509=ALL-UNNAMED '/}"
-      NEW_CMD="${NEW_CMD/'--add-opens java.base/sun.security.util=ALL-UNNAMED '/}"
-      # shellcheck disable=SC2206
-      EXEC_ARGS=(${NEW_CMD})
-      ;;
-  esac
-}
-
 inject_cloudsdk_jar() {
   # inject cloudsdk JAR at the beginning of the classpath to ensure correct certificate loads first
   # check if we're actually starting the Omada controller (not just running some other command)
@@ -780,7 +760,6 @@ common_setup_and_validation() {
   check_userland_kernel
   show_java_version
   warn_autobackup
-  handle_java_version
   patch_java_heap
   inject_cloudsdk_jar
 }
